@@ -1,0 +1,39 @@
+name: icon-theme-pocillo
+base: core24
+version: '0.21.0'
+platforms:
+  amd64:
+    build-on: [amd64]
+    build-for: [amd64]
+summary: Pocillo icon theme for Snaps
+description: |
+  A snap that exports the Pocillo icon theme.
+grade: stable
+confinement: strict
+
+slots:
+  icon-themes:
+    interface: content
+    source:
+      read:
+        - $SNAP/share/icons/Pocillo
+        - $SNAP/share/icons/Pocillo-light
+        - $SNAP/share/icons/TelaBudgie
+        - $SNAP/share/icons/TelaBudgie-dark
+        - $SNAP/share/icons/TelaBudgie-light
+parts:
+  pocillo-icon-themes:
+    plugin: dump
+    source: http://de.archive.ubuntu.com/ubuntu/pool/universe/b/budgie-artwork/pocillo-icon-theme_0.21.0_all.deb
+    override-build: |
+      snapcraftctl build
+      pwd
+      ls -l
+      mkdir -p $CRAFT_PART_INSTALL/share/icons
+      mv -f $CRAFT_PART_INSTALL/usr/share/icons/* $CRAFT_PART_INSTALL/share/icons
+    stage:
+      - share/icons/Pocillo
+      - share/icons/Pocillo-light
+      - share/icons/TelaBudgie
+      - share/icons/TelaBudgie-dark
+      - share/icons/TelaBudgie-light
