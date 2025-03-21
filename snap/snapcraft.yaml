@@ -1,7 +1,7 @@
 name: icon-theme-pocillo
 build-base: core24
 base: bare
-version: '0.21.0'
+version: '0.21.1'
 platforms:
   all:
     build-on: [amd64]
@@ -25,7 +25,7 @@ slots:
 parts:
   pocillo-icon-themes:
     plugin: dump
-    source: http://de.archive.ubuntu.com/ubuntu/pool/universe/b/budgie-artwork/pocillo-icon-theme_0.21.0_all.deb
+    source: http://de.archive.ubuntu.com/ubuntu/pool/universe/b/budgie-artwork/pocillo-icon-theme_0.21.1_all.deb
     override-build: |
       snapcraftctl build
       pwd
@@ -33,8 +33,4 @@ parts:
       mkdir -p $CRAFT_PART_INSTALL/share/icons
       mv -f $CRAFT_PART_INSTALL/usr/share/icons/* $CRAFT_PART_INSTALL/share/icons
     stage:
-      - share/icons/Pocillo
-      - share/icons/Pocillo-light
-      - share/icons/TelaBudgie
-      - share/icons/TelaBudgie-dark
-      - share/icons/TelaBudgie-light
+      - share/icons/
